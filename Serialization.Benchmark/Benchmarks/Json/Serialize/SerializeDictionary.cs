@@ -15,7 +15,7 @@ namespace Serialization.Benchmark.Benchmarks
 {
 
     public class SerializeDictionary : BenchmarkCollectionBase
-    {
+    { 
         public IDictionary<string,HotelInformation> Data { get; set; }
 
         [GlobalSetup]
