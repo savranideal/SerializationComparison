@@ -22,7 +22,7 @@ namespace Serialization.Benchmark.Benchmarks
         {
             public Config()
             {
-                AddColumn(new TagColumn("Format", name => "Json"));
+                AddColumn(new TagColumn("Format", name => "Json Serialize"));
                 AddColumn(new TagColumn("Object Size", name => "Large"));
             }
         }

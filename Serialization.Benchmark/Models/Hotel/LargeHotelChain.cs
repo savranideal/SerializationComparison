@@ -37,37 +37,37 @@ namespace Serialization.Benchmark.Models.Hotel
         public List<float> Key9 { get; set; }
 
         [DataMember, ProtoMember(10), Key(9)]
-        public Dictionary<double, string> Key10 { get; set; }
+        public Dictionary<int, string> Key10 { get; set; }
 
         [DataMember, ProtoMember(11), Key(10)]
-        public Dictionary<double, string> Key11 { get; set; }
+        public Dictionary<int, string> Key11 { get; set; }
 
         [DataMember, ProtoMember(12), Key(11)]
-        public Dictionary<double, string> Key12 { get; set; }
+        public Dictionary<int, string> Key12 { get; set; }
 
         [DataMember, ProtoMember(13), Key(12)]
-        public Dictionary<double, string> Key13 { get; set; }
+        public Dictionary<int, string> Key13 { get; set; }
 
         [DataMember, ProtoMember(14), Key(13)]
-        public Dictionary<double, string> Key14 { get; set; }
+        public Dictionary<int, string> Key14 { get; set; }
 
         [DataMember, ProtoMember(15), Key(14)]
-        public Dictionary<double, string> Key15 { get; set; }
+        public Dictionary<int, string> Key15 { get; set; }
 
         [DataMember, ProtoMember(16), Key(15)]
-        public Dictionary<double, string> Key16 { get; set; }
+        public Dictionary<int, string> Key16 { get; set; }
 
         [DataMember, ProtoMember(17), Key(16)]
-        public Dictionary<double, string> Key17 { get; set; }
+        public Dictionary<int, string> Key17 { get; set; }
 
         [DataMember, ProtoMember(18), Key(17)]
-        public Dictionary<double, string> Key18 { get; set; }
+        public Dictionary<int, string> Key18 { get; set; }
 
         [DataMember, ProtoMember(19), Key(18)]
-        public Dictionary<double, string> Key19 { get; set; }
+        public Dictionary<int, string> Key19 { get; set; }
 
         [DataMember, ProtoMember(20), Key(19)]
-        public Dictionary<double, string> Key20 { get; set; }
+        public Dictionary<int, string> Key20 { get; set; }
 
         public LargeHotelChain(string title)
         {

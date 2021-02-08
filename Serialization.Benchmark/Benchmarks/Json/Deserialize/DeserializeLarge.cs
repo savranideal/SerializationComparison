@@ -20,8 +20,8 @@ namespace Serialization.Benchmark.Benchmarks
             public Config()
             {
                 
-                AddColumn(new TagColumn("Format", name => "Json"));
-                AddColumn(new TagColumn("Object Size", name => "Large"));
+                AddColumn(new TagColumn("Format", name => "Json Deserialize"));
+                AddColumn(new TagColumn("Object Size", name => "Collection"));
             }
         }
         public IDictionary<string, DeserializeFile> Data { get; set; }

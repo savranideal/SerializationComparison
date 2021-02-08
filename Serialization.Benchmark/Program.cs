@@ -52,9 +52,10 @@ namespace Serilization.Benchmark
             }
 
             //CreateSerializedData();
-             
-            //var b = new DeserializeLarge();
-            //b.Setup();
+
+            var b = new SerializeLargeSize();
+            b.Setup();
+            b.Jil();
             //var k = b.FastJson();
             //var k2 = b.Jil();
             //var k3 = b.ServiceStackText();
@@ -62,7 +63,7 @@ namespace Serilization.Benchmark
             //var k5 = b.SystemTextJson();
             //var k6 = b.UTF8Json();
             //var summary = BenchmarkRunner.Run<DeserializeLarge>();
-           // BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+            // BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
         }
         private static void CreateSerializedData()
         {
