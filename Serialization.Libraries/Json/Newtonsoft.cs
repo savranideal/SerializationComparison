@@ -20,9 +20,6 @@ namespace Serialization.Libraries.Json
 {
     public static partial class JsonSerialize
     {
-        /// <summary>
-        /// Json serialize için newtonsoft temelli yardımcı metotlar.
-        /// </summary>
         public static  class Newtonsoft
         { 
             public static string Serialize<T>(T objectToSerialize,
@@ -46,20 +43,6 @@ namespace Serialization.Libraries.Json
                 }
             }
              
-            //public static string Serialize<T>(T objectToSerialize,
-            //    JsonSerializerSettings settings)
-            //{
-            //    return JsonConvert.SerializeObject(objectToSerialize, settings);
-            //}
-
-            //public static string Serialize(Type type, object objectToSerialize,
-            //    bool preserveTypeInfo = false,
-            //    List<JsonConverter> converters = null,
-            //    bool indent = false,
-            //    ReferenceLoop referenceLoopHandling = ReferenceLoop.Ignore)
-            //{
-            //    return JsonConvert.SerializeObject(objectToSerialize, type, PrepareSettings(preserveTypeInfo, converters, indent, referenceLoopHandling));
-            //}
 
             public static void SerializeCompressed<T>(T objectToSerialize, Stream stream,
                 bool preserveTypeInfo = false,

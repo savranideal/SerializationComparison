@@ -22,7 +22,8 @@ namespace Serilization.Benchmark
     class Program
     {
         private const string _serializedString = "SerializeToString";
-        private const string _serializedCollectionString = "SerializeCollectionToString";
+        private const string _serializedStream = "SerializedStream";
+        private const string _serializedCollectionString = "ToString";
         private const string _objectType = "Object Type";
         private const string _processType = "Process Type";
         static void Main(string[] args)
@@ -73,12 +74,12 @@ namespace Serilization.Benchmark
             //    .AddColumn(new TagColumn(_objectType, c => "Dictionary"))
             //    .AddColumn(new TagColumn(_processType, c => _serializedCollectionString))
             //    );
-           
+
             /* Dictionary with small object  */
-            BenchmarkRunner.Run<SerializeCollectionToString<DictionarySerializeModel<string,SmallHotelChain>>>(ManualConfig.Create(DefaultConfig.Instance)
-                .AddColumn(new TagColumn(_objectType, c => "Dictionary"))
-                .AddColumn(new TagColumn(_processType, c => _serializedCollectionString))
-                );
+            //BenchmarkRunner.Run<SerializeCollectionToString<DictionarySerializeModel<string,SmallHotelChain>>>(ManualConfig.Create(DefaultConfig.Instance)
+            //    .AddColumn(new TagColumn(_objectType, c => "Dictionary"))
+            //    .AddColumn(new TagColumn(_processType, c => _serializedCollectionString))
+            //    );
 
             ///* Dictionary with large object  */
             //BenchmarkRunner.Run<SerializeCollectionToString<DictionarySerializeModel<string,LargeHotelChain>>>(ManualConfig.Create(DefaultConfig.Instance)
@@ -89,10 +90,10 @@ namespace Serilization.Benchmark
 
 
             ///// List with primitive tpyes
-            //BenchmarkRunner.Run<SerializeCollectionToString<EnumerableSerializeModel<string>>>(ManualConfig.Create(DefaultConfig.Instance)
-            //    .AddColumn(new TagColumn(_objectType, c => "List"))
-            //    .AddColumn(new TagColumn(_processType, c => _serializedCollectionString))
-            //    );
+            BenchmarkRunner.Run<SerializeCollectionToString<EnumerableSerializeModel<string>>>(ManualConfig.Create(DefaultConfig.Instance)
+                .AddColumn(new TagColumn(_objectType, c => "List"))
+                .AddColumn(new TagColumn(_processType, c => _serializedCollectionString))
+                );
 
             ///* List with small object  */
             //BenchmarkRunner.Run<SerializeCollectionToString<EnumerableSerializeModel<SmallHotelChain>>>(ManualConfig.Create(DefaultConfig.Instance)
@@ -105,6 +106,27 @@ namespace Serilization.Benchmark
             //    .AddColumn(new TagColumn(_objectType, c => "List"))
             //    .AddColumn(new TagColumn(_processType, c => _serializedCollectionString))
             //    );
+
+            #region Serialize To Stream
+            ///* Stream with primitive type  */
+            //BenchmarkRunner.Run<SerializeToStream<string>>(ManualConfig.Create(DefaultConfig.Instance)
+            //    .AddColumn(new TagColumn(_objectType, c => "string"))
+            //    .AddColumn(new TagColumn(_processType, c => _serializedStream))
+            //    );
+
+            ///* Stream with small object  */
+            //BenchmarkRunner.Run<SerializeToStream<SmallHotelChain>>(ManualConfig.Create(DefaultConfig.Instance)
+            //    .AddColumn(new TagColumn(_objectType, c => typeof(SmallHotelChain).Name))
+            //    .AddColumn(new TagColumn(_processType, c => _serializedStream))
+            //    );
+
+            ///* Stream with large object  */
+            //BenchmarkRunner.Run<SerializeToStream<LargeHotelChain>>(ManualConfig.Create(DefaultConfig.Instance)
+            //    .AddColumn(new TagColumn(_objectType, c => typeof(LargeHotelChain).Name))
+            //    .AddColumn(new TagColumn(_processType, c => _serializedStream))
+            //    );
+
+            #endregion
 
 
 

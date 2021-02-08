@@ -19,9 +19,9 @@ namespace Serialization.Libraries.Json
             {
                 return JsonSerializer.Serialize(objectToSerialize, jsonSerializerOptions);
             }
-            public static async Task Serialize<T>(T objectToSerialize,Stream stream, JsonSerializerOptions jsonSerializerOptions = null)
+            public static  void Serialize<T>(T objectToSerialize,Stream stream, JsonSerializerOptions jsonSerializerOptions = null)
             {
-                 await JsonSerializer.SerializeAsync(stream,objectToSerialize, jsonSerializerOptions);
+                  JsonSerializer.SerializeAsync(stream,objectToSerialize, jsonSerializerOptions).GetAwaiter().GetResult();
             }
 
             public static T Deserialize<T>(string json, JsonSerializerOptions jsonSerializerOptions = null)

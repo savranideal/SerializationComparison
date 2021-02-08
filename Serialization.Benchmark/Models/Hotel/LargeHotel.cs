@@ -8,8 +8,7 @@ namespace Serialization.Benchmark.Models.Hotel
 {
     [Serializable, DataContract, ProtoContract, MessagePackObject]
     public class LargeHotel
-    {
-         
+    {  
         [DataMember, ProtoMember(1), Key(0)]
         public int Id { get; set; }
 

@@ -12,71 +12,66 @@ using Serialization.Libraries.Binary;
 using Serialization.Libraries.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Serialization.Benchmark.Benchmarks
 {
-     
+
     [CategoriesColumn]
-    public class SerializeToStream<TModel>: BenchmarkBase
+    public class SerializeToStream<TModel> : BenchmarkBase
     {
-        //private const string _jsonCategory = "Json_"+typeof(TModel).Name;
-        public TModel Data { get; set; } 
-        
+        public TModel Data { get; set; }
         [GlobalSetup]
         public void Setup()
         {
             var f = new Fixture() { RepeatCount = 1 };
             f.Customizations.Add(new StringGenerator(() => Guid.NewGuid().ToString().Substring(0, 2)));
             Data = f.Create<TModel>();
-        }
-        [Benchmark]
-        //[BenchmarkCategory(_jsonCategory)]
-        public string Newtonsoft()
-        {
-            return JsonSerialize.Newtonsoft.Serialize(Data);
 
         }
         [Benchmark]
-        //[BenchmarkCategory(_jsonCategory)]
-        public byte[] UTF8Json()
+        public void Newtonsoft()
         {
-            return JsonSerialize.Utf8Json.Serialize(Data);
+
+            JsonSerialize.Newtonsoft.Serialize(Data, new MemoryStream(short.MaxValue));
 
         }
-        [Benchmark]
-        //[BenchmarkCategory(_jsonCategory)]
-        public string FastJson()
+        [Benchmark(Baseline = true)]
+        public void UTF8Json()
         {
-            return JsonSerialize.FastJson.Serialize(Data);
 
-        }
-        [Benchmark]
-        //[BenchmarkCategory(_jsonCategory)]
-        public string ServiceStackText()
-        {
-            return JsonSerialize.ServiceStackText.Serialize(Data); 
-        }
-       
 
-        [Benchmark]
-        //[BenchmarkCategory(_jsonCategory)]
-        public string Swifter()
-        {
-            return JsonSerialize.Swifter.Serialize(Data); 
+            JsonSerialize.Utf8Json.Serialize(Data, new MemoryStream(short.MaxValue));
+
         }
 
         [Benchmark]
-        //[BenchmarkCategory(_jsonCategory)]
-        public string SystemTextJson()
+        public void ServiceStackText()
         {
-            return JsonSerialize.SystemTextJson.Serialize(Data); 
+            JsonSerialize.ServiceStackText.Serialize(Data, new MemoryStream(short.MaxValue));
+        }
+
+
+        [Benchmark]
+        public void Swifter()
+        {
+            JsonSerialize.Swifter.Serialize(Data, new MemoryStream(short.MaxValue));
+        }
+
+        [Benchmark]
+        public void SystemTextJson()
+        {
+
+            JsonSerialize.SystemTextJson.Serialize(Data, new MemoryStream(short.MaxValue));
         }
         [Benchmark]
-        //[BenchmarkCategory(_jsonCategory)]
-        public string Jil()
+        public void Jil()
         {
-            return JsonSerialize.JIL.Serialize(Data); 
+
+            JsonSerialize.JIL.Serialize(Data, new MemoryStream(short.MaxValue));
         }
 
 
@@ -84,5 +79,5 @@ namespace Serialization.Benchmark.Benchmarks
 
     }
 
-     
+
 }

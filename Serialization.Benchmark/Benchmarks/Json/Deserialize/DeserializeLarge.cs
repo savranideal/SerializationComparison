@@ -91,7 +91,7 @@ namespace Serialization.Benchmark.Benchmarks
 
         [Benchmark]
         [BenchmarkCategory("Json_Large")]
-        public List<SmallHotelChain> Jil()
+        public List<SmallHotelChain> JIL()
         {
             return JsonSerialize.JIL.Deserialize<List<SmallHotelChain>>(Data["JIL"].Data);
         }

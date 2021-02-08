@@ -9,18 +9,11 @@ using System.Runtime.ExceptionServices;
 namespace Serialization.Libraries.Binary
 {
     public static partial class BinarySerialize
-    {
-        /// <summary>
-        /// MessagePack olarak serialize ve deserialize işlemlerini gerçeleştirir.
-        /// </summary>
-        /// <remarks>
-        /// Alt planda kullanılan MessagePack-CSharp paketi şimdilik circular-referance  desteklemiyor.
-        /// </remarks>
+    { 
         public static class MsgPack
         {
             static MsgPack()
-            {
-                //haack
+            { 
                 var sqType = typeof(MessagePackSerializer).Assembly.GetType("MessagePack.SequencePool");
                 var sq = sqType.GetField("Shared", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
                 var poolField = sqType.GetField("arrayPool", BindingFlags.NonPublic | BindingFlags.Instance);

@@ -9,12 +9,9 @@ namespace Serialization.Libraries.Json
        public class SimdJsonSharp
         {
 
-            
-
-             
             public static T Deserialize<T>(string data, fastJSON.JSONParameters options = null)
             {
-                return null
+                return default(T);
 
             }
         }
