@@ -1,4 +1,4 @@
-## Serialize to string, basic type(string)
+## Serialize to string, basic type
 
 ```
 |           Method |      Mean |     Error |    StdDev |
