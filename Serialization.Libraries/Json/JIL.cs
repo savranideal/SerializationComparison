@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jil;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Serialization.Libraries.Json
                 {
 
                 });
-            }
+            } 
             public static string Serialize<T>(T data, Jil.Options options = null)
             {
                 return Jil.JSON.Serialize(data, options);

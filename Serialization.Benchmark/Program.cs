@@ -16,9 +16,12 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Columns;
+using System.Runtime.Serialization;
 
 namespace Serilization.Benchmark
 {
+    
+
     class Program
     {
         private const string _serializedString = "String";
@@ -27,6 +30,11 @@ namespace Serilization.Benchmark
         private const string _processType = "Output";
         static void Main(string[] args)
         {
+            //var t2 = new Test2() { A1 = "a1text" };
+            //var t = new Test() { B1 = "b1text", Test2 = t2 };
+            //t2.Test = t;
+            //var l=JsonSerialize.ServiceStackText.Serialize(t);
+            //var m = l;
 
             #region Enviroment Settings 
             const string envVariable = "Data";

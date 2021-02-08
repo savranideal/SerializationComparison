@@ -8,9 +8,9 @@ namespace Serialization.Libraries.Json
 {
     public static partial class JsonSerialize
     {
-       public class ServiceStackText
+       public static class ServiceStackText
         {
-
+            
             public static string Serialize<T>(T data)
             { 
                 return JsonSerializer.SerializeToString(data);
