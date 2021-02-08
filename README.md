@@ -1,6 +1,6 @@
 ## Serialize to string, basic type
 
-```
+
 |           Method |      Mean |     Error |    StdDev |
 |----------------- |----------:|----------:|----------:|
 |         UTF8Json |  95.09 ns |  9.887 ns |  5.884 ns |
@@ -13,7 +13,7 @@
 
 ## Serialize to string, small class
 
-```
+
 |           Method |        Mean |        Error |       StdDev |  Gen 0 | Gen 1 | Gen 2 | Allocated |
 |----------------- |------------:|-------------:|-------------:|-------:|------:|------:|----------:|
 |         UTF8Json |    735.2 ns |     50.51 ns |     30.06 ns | 0.0257 |     - |     - |     112 B |
@@ -26,7 +26,7 @@
 
 ## Serialize to string, big class
 
-```
+
 |           Method |      Mean |      Error |     StdDev |  Gen 0 | Gen 1 | Gen 2 | Allocated |
 |----------------- |----------:|-----------:|-----------:|-------:|------:|------:|----------:|
 |         UTF8Json |  6.370 μs |  0.7206 μs |  0.4767 μs | 0.1602 |     - |     - |     696 B |
@@ -39,7 +39,7 @@
 
 ## Serialize to string, List with small class
 
-```
+
 |           Method | DataCount |            Mean |           Error |          StdDev | Input Type |     Gen 0 |    Gen 1 |    Gen 2 | Allocated |
 |----------------- |---------- |----------------:|----------------:|----------------:|----------- |----------:|---------:|---------:|----------:|
 |         UTF8Json |         1 |        874.8 ns |        68.69 ns |        35.92 ns |       List |    0.0534 |        - |        - |     224 B |
@@ -76,7 +76,7 @@
  
 ## Serialize to string, List with big class
  
- ```
+ 
 |           Method | DataCount |           Mean |         Error |        StdDev |     Gen 0 |     Gen 1 |    Gen 2 |  Allocated |
 |----------------- |---------- |---------------:|--------------:|--------------:|----------:|----------:|---------:|-----------:|
 |         UTF8Json |         1 |       4.022 μs |     0.1640 μs |     0.1085 μs |    0.1907 |         - |        - |      800 B |
@@ -113,7 +113,7 @@
 
 ## Serialize to string, Dictionary with small class
 
-```
+
 |           Method | DataCount |          Mean |          Error |        StdDev |     Gen 0 |    Gen 1 |    Gen 2 | Allocated |
 |----------------- |---------- |--------------:|---------------:|--------------:|----------:|---------:|---------:|----------:|
 |         UTF8Json |         1 |      1.023 μs |      0.0890 μs |     0.0530 μs |    0.0362 |        - |        - |     152 B |
@@ -150,7 +150,7 @@
 
 ## Serialize to string, Dictionary with big class
 
-```
+
 |           Method | DataCount |          Mean |         Error |        StdDev |     Gen 0 |     Gen 1 |    Gen 2 |   Allocated |
 |----------------- |---------- |--------------:|--------------:|--------------:|----------:|----------:|---------:|------------:|
 |   SystemTextJson |         1 |      14.06 μs |      0.988 μs |      0.588 μs |    0.6104 |         - |        - |     2.55 KB |
@@ -189,7 +189,7 @@
 
 ## Serialize to stream, small class
 
-```
+
 |           Method |      Mean |      Error |     StdDev |    Median | Ratio | RatioSD |  Gen 0 |  Gen 1 | Gen 2 | Allocated |
 |----------------- |----------:|-----------:|-----------:|----------:|------:|--------:|-------:|-------:|------:|----------:|
 |         UTF8Json |  2.628 μs |  0.1390 μs |  0.0919 μs |  2.632 μs |  1.00 |    0.00 | 7.8087 | 0.4311 |     - |  32.09 KB |
@@ -202,7 +202,7 @@
 
 ## Serialize to stream, big class
 
-```
+
 |           Method |      Mean |      Error |     StdDev | Ratio | RatioSD |  Gen 0 |  Gen 1 | Gen 2 | Allocated |
 |----------------- |----------:|-----------:|-----------:|------:|--------:|-------:|-------:|------:|----------:|
 |              Jil |  7.814 μs |  0.4443 μs |  0.2644 μs |  0.97 |    0.03 | 9.1705 | 0.9537 |     - |  37.57 KB |
