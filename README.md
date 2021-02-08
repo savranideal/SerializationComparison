@@ -8,7 +8,6 @@ Intel Core i7-8550U CPU 1.80GHz (Kaby Lake R), 1 CPU, 8 logical and 4 physical c
 
 MaxIterationCount=10  MaxWarmupIterationCount=8  MinIterationCount=3  
 
-```
 |           Method |      Mean |      Error |     StdDev | Ratio | RatioSD |     Object Type |     Process Type |  Gen 0 |  Gen 1 | Gen 2 | Allocated |
 |----------------- |----------:|-----------:|-----------:|------:|--------:|---------------- |----------------- |-------:|-------:|------:|----------:|
 |         UTF8Json |  4.233 μs |  0.3615 μs |  0.2151 μs |  1.00 |    0.00 | SmallHotelChain | SerializedStream | 7.8049 | 0.4272 |     - |  32.09 KB |
