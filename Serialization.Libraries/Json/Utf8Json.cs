@@ -35,10 +35,10 @@ namespace Serialization.Libraries.Json
                 return JsonSerializer.Serialize(objectToSerialize, GetResolver(allowPrivate, excludeNull));
             }
 
-            //public static void Serialize<T>(T objectToSerialize, Stream stream, bool allowPrivate = false, bool excludeNull = true)
-            //{
-            //    JsonSerializer.Serialize(stream, objectToSerialize, GetResolver(allowPrivate, excludeNull));
-            //}
+            public static void Serialize<T>(T objectToSerialize, Stream stream, bool allowPrivate = false, bool excludeNull = true)
+            {
+                JsonSerializer.Serialize(stream, objectToSerialize, GetResolver(allowPrivate, excludeNull));
+            }
 
             public static T Deserialize<T>(byte[] jsonByteArray, bool allowPrivate = false, bool excludeNull = true)
             {

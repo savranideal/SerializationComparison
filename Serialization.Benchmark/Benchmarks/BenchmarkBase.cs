@@ -25,6 +25,7 @@ namespace Serialization.Benchmark.Benchmarks
     //[RPlotExporter]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)] 
     [MemoryDiagnoser]
+    [SimpleJob, MaxWarmupCount(8),MinIterationCount(3), MaxIterationCount(10)]
     public abstract class BenchmarkBase
     {
 
@@ -33,7 +34,8 @@ namespace Serialization.Benchmark.Benchmarks
     public abstract class BenchmarkCollectionBase : BenchmarkBase
     {
 
-        [Params(1, 10, 100, 500, 1000, 10_000, 100_000, 500_000)]
+        [Params(1, 10, 100, 1000, 10_000, 100_000)] 
+        //[Params(100_000)]
         public int DataCount { get; set; }
 
 

@@ -11,20 +11,28 @@ namespace Serialization.Libraries.Json
         {
             static JIL()
             {
-                Jil.JSON.SetDefaultOptions(new Jil.Options(includeInherited:true)
-                { 
-                    
+                Jil.JSON.SetDefaultOptions(new Jil.Options(includeInherited: true)
+                {
+
                 });
             }
             public static string Serialize<T>(T data, Jil.Options options = null)
-            { 
+            {
                 return Jil.JSON.Serialize(data, options);
 
             }
-             
+            public static void Serialize<T>(T data, Stream stream, Jil.Options options = null)
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    Jil.JSON.Serialize(data, writer, options);
+                }
+
+            }
+
             public static T Deserialize<T>(Stream stream, Jil.Options options = null)
             {
-               using TextReader text = new StreamReader(stream);
+                using TextReader text = new StreamReader(stream);
                 return Jil.JSON.Deserialize<T>(text, options);
             }
             public static T Deserialize<T>(string data, Jil.Options options = null)
@@ -32,8 +40,8 @@ namespace Serialization.Libraries.Json
                 using (var input = new StringReader(data))
                 {
                     return Jil.JSON.Deserialize<T>(input, options);
-                } 
-            } 
+                }
+            }
         }
     }
 }

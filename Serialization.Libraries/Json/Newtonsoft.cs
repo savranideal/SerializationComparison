@@ -32,6 +32,18 @@ namespace Serialization.Libraries.Json
                 ReferenceLoop referenceLoopHandling = ReferenceLoop.Ignore)
             {
                 return JsonConvert.SerializeObject(objectToSerialize, PrepareSettings(preserveTypeInfo, converters, indent, referenceLoopHandling));
+            }public static void Serialize<T>(T objectToSerialize,
+                Stream stream,
+                bool preserveTypeInfo = false,
+                List<JsonConverter> converters = null,
+                bool indent = false,
+                ReferenceLoop referenceLoopHandling = ReferenceLoop.Ignore)
+            {
+                var serializer = JsonSerializer.CreateDefault(PrepareSettings(preserveTypeInfo, converters, indent, referenceLoopHandling));
+                using (var writer = new StreamWriter(stream))
+                {
+                    serializer.Serialize(writer, objectToSerialize);
+                }
             }
              
             //public static string Serialize<T>(T objectToSerialize,

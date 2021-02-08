@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using Serialization.Benchmark.Models;
+using Serialization.Benchmark.Models.Hotel;
 using Serialization.Libraries.Json;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace Serialization.Benchmark.Benchmarks
         {
             Data = new Dictionary<string, DeserializeFile>();
             string jsonExamples = Environment.GetEnvironmentVariable("Data");
-            string[] files = Directory.GetFiles(jsonExamples, $"*_{1}.json", SearchOption.AllDirectories).ToArray();
+            string[] files = Directory.GetFiles(jsonExamples, $"*_{DataCount}.json", SearchOption.AllDirectories).ToArray();
 
             foreach (var file in files)
             {
@@ -47,52 +48,52 @@ namespace Serialization.Benchmark.Benchmarks
         }
         [Benchmark]
         [BenchmarkCategory("Json_Large")]
-        public IEnumerable<HotelInformation> Newtonsoft()
+        public List<SmallHotelChain> Newtonsoft()
         {
-            return JsonSerialize.Newtonsoft.Deserialize<IEnumerable<HotelInformation>>(Data["Newtonsoft"].Data);
+            return JsonSerialize.Newtonsoft.Deserialize<List<SmallHotelChain>>(Data["Newtonsoft"].Data);
 
         }
         [Benchmark]
         [BenchmarkCategory("Json_Large")]
-        public IEnumerable<HotelInformation> UTF8Json()
+        public List<SmallHotelChain> UTF8Json()
         {
-            return JsonSerialize.Utf8Json.Deserialize<IEnumerable<HotelInformation>>(Data["UTF8Json"].Data);
+            return JsonSerialize.Utf8Json.Deserialize<List<SmallHotelChain>>(Data["Utf8Json"].Data);
 
         }
         [Benchmark]
         [BenchmarkCategory("Json_Large")]
-        public IList<HotelInformation> FastJson()
+        public IList<SmallHotelChain> FastJson()
         {
-            return JsonSerialize.FastJson.Deserialize<List<HotelInformation>>(Data["FastJson"].Data);
+            return JsonSerialize.FastJson.Deserialize<List<SmallHotelChain>>(Data["FastJson"].Data);
 
         }
         [Benchmark]
         [BenchmarkCategory("Json_Large")]
-        public IEnumerable<HotelInformation> ServiceStackText()
+        public List<SmallHotelChain> ServiceStackText()
         {
-            return JsonSerialize.ServiceStackText.Deserialize<IEnumerable<HotelInformation>>(Data["ServiceStackText"].Data);
+            return JsonSerialize.ServiceStackText.Deserialize<List<SmallHotelChain>>(Data["ServiceStackText"].Data);
         }
 
 
         [Benchmark]
         [BenchmarkCategory("Json_Large")]
-        public IEnumerable<HotelInformation> Swifter()
+        public List<SmallHotelChain> Swifter()
         {
-            return JsonSerialize.Swifter.Deserialize<IEnumerable<HotelInformation>>(Data["Swifter"].Data);
+            return JsonSerialize.Swifter.Deserialize<List<SmallHotelChain>>(Data["Swifter"].Data);
         }
 
         [Benchmark]
         [BenchmarkCategory("Json_Large")]
-        public IEnumerable<HotelInformation> SystemTextJson()
+        public List<SmallHotelChain> SystemTextJson()
         {
-            return JsonSerialize.SystemTextJson.Deserialize<IEnumerable<HotelInformation>>(Data["SystemTextJson"].Data);
+            return JsonSerialize.SystemTextJson.Deserialize<List<SmallHotelChain>>(Data["SystemTextJson"].Data);
         }
 
         [Benchmark]
         [BenchmarkCategory("Json_Large")]
-        public IEnumerable<HotelInformation> Jil()
+        public List<SmallHotelChain> Jil()
         {
-            return JsonSerialize.JIL.Deserialize<IEnumerable<HotelInformation>>(Data["JIL"].Data);
+            return JsonSerialize.JIL.Deserialize<List<SmallHotelChain>>(Data["JIL"].Data);
         }
     }
 

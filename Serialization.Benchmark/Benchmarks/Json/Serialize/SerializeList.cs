@@ -17,7 +17,7 @@ namespace Serialization.Benchmark.Benchmarks
 
     public class SerializeList : BenchmarkCollectionBase
     {
-        public IEnumerable<HotelChain> Data { get; set; }
+        public IEnumerable<SmallHotelChain> Data { get; set; }
 
         [GlobalSetup]
         public void Setup()
@@ -25,8 +25,7 @@ namespace Serialization.Benchmark.Benchmarks
 
             var f = new Fixture() { RepeatCount = 1 };
             f.Customizations.Add(new StringGenerator(() => Guid.NewGuid().ToString().Substring(0, 2)));
-
-            Data = f.CreateMany<HotelChain>();
+            Data = f.CreateMany<SmallHotelChain>(DataCount);
         }
 
         [Benchmark]

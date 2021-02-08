@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Benchmarks\Json\Serialize\SerializeLargeSize.cs" />
+    <Compile Remove="Benchmarks\Json\Serialize\SerializeList.cs" />
     <Compile Remove="Benchmarks\Md5VsSha256.cs" />
   </ItemGroup>
 
