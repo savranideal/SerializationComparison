@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Json\FastJson.cs" />
     <Compile Remove="Json\SimdJsonSharp.cs" />
   </ItemGroup>
 

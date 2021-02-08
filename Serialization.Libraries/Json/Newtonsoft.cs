@@ -29,7 +29,9 @@ namespace Serialization.Libraries.Json
                 ReferenceLoop referenceLoopHandling = ReferenceLoop.Ignore)
             {
                 return JsonConvert.SerializeObject(objectToSerialize, PrepareSettings(preserveTypeInfo, converters, indent, referenceLoopHandling));
-            }public static void Serialize<T>(T objectToSerialize,
+            }
+            
+            public static void Serialize<T>(T objectToSerialize,
                 Stream stream,
                 bool preserveTypeInfo = false,
                 List<JsonConverter> converters = null,

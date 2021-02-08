@@ -40,9 +40,8 @@ namespace Serilization.Benchmark
 
             #endregion
 
-
             //CreateSerializedData();
-
+            //BenchmarkRunner.Run<DeserializeJson>();
             //// primitive types
             //BenchmarkRunner.Run<SerializeToString<string>>(ManualConfig.Create(DefaultConfig.Instance)
             //    .AddColumn(new TagColumn(_objectType, c => typeof(string).Name))
@@ -101,10 +100,10 @@ namespace Serilization.Benchmark
             //    );
 
             ///* List with large object  */
-            //BenchmarkRunner.Run<SerializeCollectionToString<EnumerableSerializeModel<LargeHotelChain>>>(ManualConfig.Create(DefaultConfig.Instance)
-            //    .AddColumn(new TagColumn(_objectType, c => "List"))
-            //    .AddColumn(new TagColumn(_processType, c => _serializedString))
-            //    );
+            BenchmarkRunner.Run<SerializeCollectionToString<EnumerableSerializeModel<LargeHotelChain>>>(ManualConfig.Create(DefaultConfig.Instance)
+                .AddColumn(new TagColumn(_objectType, c => "List"))
+                .AddColumn(new TagColumn(_processType, c => _serializedString))
+                );
 
             #region Serialize To Stream
             ///* Stream with primitive type  */
@@ -120,10 +119,10 @@ namespace Serilization.Benchmark
             //    );
 
             ///* Stream with large object  */
-            BenchmarkRunner.Run<SerializeToStream<LargeHotelChain>>(ManualConfig.Create(DefaultConfig.Instance)
-                .AddColumn(new TagColumn(_objectType, c => typeof(LargeHotelChain).Name))
-                .AddColumn(new TagColumn(_processType, c => _serializedStream))
-                );
+            //BenchmarkRunner.Run<SerializeToStream<LargeHotelChain>>(ManualConfig.Create(DefaultConfig.Instance)
+            //    .AddColumn(new TagColumn(_objectType, c => typeof(LargeHotelChain).Name))
+            //    .AddColumn(new TagColumn(_processType, c => _serializedStream))
+            //    );
 
             #endregion
 
@@ -137,7 +136,7 @@ namespace Serilization.Benchmark
             var f = new Fixture() { RepeatCount = 1 };
             f.Customizations.Add(new StringGenerator(() => Guid.NewGuid().ToString().Substring(0, 2)));
 
-            var counts = new int[] { 1, 10, 100, 500, 1000, 10_000, 100_000, 500_000 };
+            var counts = new int[] { 1, 10, 100, 1000, 10_000 };
             // var builder = f.Build<HotelChain>().With(x => x.Hotels, new Fixture().CreateMany<Hotel>(1).ToList());
             foreach (var item in counts)
             {
@@ -151,7 +150,7 @@ namespace Serilization.Benchmark
 
                 foreach (var jsonSerializer in jsonSerializers)
                 {
-                    var methodForList = jsonSerializer.GetMethod("Serialize");
+                    var methodForList = jsonSerializer.GetMethods().Where(c=>c.Name=="Serialize" &&(c.ReturnType ==typeof(string) || c.ReturnType==typeof(byte[]))).FirstOrDefault();
                     methodForList = methodForList.MakeGenericMethod(typeof(IEnumerable<SmallHotelChain>));
                     var listList = new List<object> { listObjects };
                     var c = methodForList.GetParameters().Count();
@@ -159,7 +158,7 @@ namespace Serilization.Benchmark
                     {
                         listList.Add(null);
                     }
-                    var listFileName = $"Serialized_{jsonSerializer.Name}_HotelChain_{item}.json";
+                    var listFileName = $"Serialized_{jsonSerializer.Name}_SmallHotelChain_{item}.json";
 
                     var listJson = methodForList.Invoke(null, listList.ToArray());
                     if (listJson.GetType() == typeof(byte[]))

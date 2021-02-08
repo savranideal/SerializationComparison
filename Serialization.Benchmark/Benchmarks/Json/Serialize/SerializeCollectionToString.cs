@@ -39,13 +39,7 @@ namespace Serialization.Benchmark.Benchmarks
             return JsonSerialize.Utf8Json.Serialize(Data);
 
         }
-
-        //[Benchmark]
-        public string FastJson()
-        {
-            return JsonSerialize.FastJson.Serialize(Data);
-
-        }
+         
         [Benchmark] 
         public string ServiceStackText()
         {

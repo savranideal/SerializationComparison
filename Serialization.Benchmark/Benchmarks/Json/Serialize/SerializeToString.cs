@@ -44,12 +44,7 @@ namespace Serialization.Benchmark.Benchmarks
 
         }
         
-        //[Benchmark]
-        public string FastJson()
-        {
-            return JsonSerialize.FastJson.Serialize(Data);
-
-        }
+        
         
         [Benchmark]
         public string ServiceStackText()
