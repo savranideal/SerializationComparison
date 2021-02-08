@@ -7,13 +7,16 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using Serialization.Benchmark.Models;
 using Serialization.Benchmark.Models.Geography;
+using Serialization.Benchmark.Models.Hotel;
 using Serialization.Libraries.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Serialization.Benchmark.Benchmarks
 {
-    
+
+    [Config(typeof(Config))]
     public class SerializeSmallSize: BenchmarkBase
     {
         private class Config : ManualConfig
@@ -21,14 +24,17 @@ namespace Serialization.Benchmark.Benchmarks
             public Config()
             { 
                 AddColumn(new TagColumn("Format", name => "Json"));
-                AddColumn(new TagColumn("Object Size", name => "Small"));
+                AddColumn(new TagColumn("Object Size", name => "Small")); 
             }
         }
-        public HotelDescription Data { get; set; } 
+        public HotelChain Data { get; set; } 
         [GlobalSetup]
         public void Setup()
-        { 
-            Data = new Fixture().Create<HotelDescription>();
+        {
+            var f = new Fixture() { RepeatCount = 1 };
+            f.Customizations.Add(new StringGenerator(() => Guid.NewGuid().ToString().Substring(0, 2)));
+
+            Data = f.Create<HotelChain>();
         }
         [Benchmark]
         [BenchmarkCategory("Json_Small")]
@@ -57,12 +63,7 @@ namespace Serialization.Benchmark.Benchmarks
         {
             return JsonSerialize.ServiceStackText.Serialize(Data); 
         }
-        [Benchmark]
-        [BenchmarkCategory("Json_Small")]
-        public byte[] SimdJsonSharp()
-        {
-            return JsonSerialize.SimdJsonSharp.Serialize(Data); 
-        }
+       
 
         [Benchmark]
         [BenchmarkCategory("Json_Small")]

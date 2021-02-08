@@ -1,8 +1,11 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnostics.Windows.Configs;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Order;
+using BenchmarkDotNet.Reports;
+using BenchmarkDotNet.Running;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +15,7 @@ using System.Threading.Tasks;
 namespace Serialization.Benchmark.Benchmarks
 {
     //[ShortRunJob]
-    [MediumRunJob]
+    //[MediumRunJob]
     //[KeepBenchmarkFiles] 
     //[AsciiDocExporter]
     //[CsvExporter]
@@ -20,9 +23,7 @@ namespace Serialization.Benchmark.Benchmarks
     [HtmlExporter]
     [PlainExporter]
     //[RPlotExporter]
-    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-    [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
-    [CategoriesColumn]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)] 
     [MemoryDiagnoser]
     public abstract class BenchmarkBase
     {
@@ -32,9 +33,10 @@ namespace Serialization.Benchmark.Benchmarks
     public abstract class BenchmarkCollectionBase : BenchmarkBase
     {
 
-        [Params(1, 10, 100, 500, 1000)]
+        [Params(1, 10, 100, 500, 1000, 10_000, 100_000, 500_000)]
         public int DataCount { get; set; }
 
 
     }
+     
 }

@@ -6,10 +6,7 @@ using Utf8Json.Resolvers;
 namespace Serialization.Libraries.Json
 {
     public static partial class JsonSerialize
-    {
-        /// <summary>
-        /// Polimofizm, preserveTypeInfo ve standart json formatterları kullanmıyorsanız çok daha hızlı json işlemleri için bunu kullanabilirsiniz. 
-        /// </summary>
+    { 
         public static class Utf8Json
         {
             private static readonly IJsonFormatterResolver _allowPrivateExcludeNull = CompositeResolver.Create(new[]{

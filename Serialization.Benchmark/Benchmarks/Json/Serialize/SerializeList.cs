@@ -6,7 +6,9 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using Serialization.Benchmark.Models;
 using Serialization.Benchmark.Models.Geography;
+using Serialization.Benchmark.Models.Hotel;
 using Serialization.Libraries.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,18 +17,18 @@ namespace Serialization.Benchmark.Benchmarks
 
     public class SerializeList : BenchmarkCollectionBase
     {
-        public IEnumerable<HotelInformation> Data { get; set; }
+        public IEnumerable<HotelChain> Data { get; set; }
 
         [GlobalSetup]
         public void Setup()
         {
-            var f = new Fixture();
-            f.Register(() => new City() { Id = f.Create<int>(), Label = f.Create<string>(), });
-            f.Register(() => new Coordinate() { Latitude = f.Create<float>(), Longitude = f.Create<float>(), });
-            f.Register(() => new Airport() { Id = f.Create<int>(), Label = f.Create<string>(), });
-            f.Register(() => new Country() { Id = f.Create<int>(), Label = f.Create<string>(), });
-            Data= f.CreateMany<HotelInformation>(DataCount);
+
+            var f = new Fixture() { RepeatCount = 1 };
+            f.Customizations.Add(new StringGenerator(() => Guid.NewGuid().ToString().Substring(0, 2)));
+
+            Data = f.CreateMany<HotelChain>();
         }
+
         [Benchmark]
         [BenchmarkCategory("Json_List")]
         public string Newtonsoft()
@@ -54,12 +56,7 @@ namespace Serialization.Benchmark.Benchmarks
         {
             return JsonSerialize.ServiceStackText.Serialize(Data);
         }
-        [Benchmark]
-        [BenchmarkCategory("Json_List")]
-        public byte[] SimdJsonSharp()
-        {
-            return JsonSerialize.SimdJsonSharp.Serialize(Data);
-        }
+      
 
         [Benchmark]
         [BenchmarkCategory("Json_List")]

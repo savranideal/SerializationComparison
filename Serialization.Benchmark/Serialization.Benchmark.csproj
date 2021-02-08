@@ -13,6 +13,7 @@
     <PackageReference Include="AutoFixture" Version="4.15.0" />
     <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
     <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.12.1" />
+    <PackageReference Include="protobuf-net" Version="3.0.73" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +23,7 @@
   <ItemGroup>
     <Folder Include="Benchmarks\Binary\Deserialize\" />
     <Folder Include="Benchmarks\Binary\Serialize\" />
-    <Folder Include="Models\Large\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

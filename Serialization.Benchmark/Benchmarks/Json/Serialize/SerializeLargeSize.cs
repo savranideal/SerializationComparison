@@ -7,13 +7,15 @@ using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using Serialization.Benchmark.Models;
 using Serialization.Benchmark.Models.Geography;
+using Serialization.Benchmark.Models.Hotel;
 using Serialization.Libraries.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Serialization.Benchmark.Benchmarks
 {
-    [CategoriesColumn]
+    [Config(typeof(Config))]
     public class SerializeLargeSize : BenchmarkBase
     {
         private class Config : ManualConfig
@@ -21,20 +23,19 @@ namespace Serialization.Benchmark.Benchmarks
             public Config()
             {
                 AddColumn(new TagColumn("Format", name => "Json"));
-                AddColumn(new TagColumn("Object Size", name => "Small"));
+                AddColumn(new TagColumn("Object Size", name => "Large"));
             }
         }
-        public HotelInformation Data { get; set; } 
+        public LargeHotelChain Data { get; set; }
 
         [GlobalSetup]
         public void Setup()
         {
-            var f = new Fixture();
-            f.Register(() => new City() { Id = f.Create<int>(), Label = f.Create<string>(), });
-            f.Register(() => new Coordinate() { Latitude = f.Create<float>(), Longitude = f.Create<float>(), });
-            f.Register(() => new Airport() { Id = f.Create<int>(), Label = f.Create<string>(), });
-            f.Register(() => new Country() { Id = f.Create<int>(), Label = f.Create<string>(), });
-            Data= f.Create<HotelInformation>();
+
+            var f = new Fixture() { RepeatCount = 1 };
+            f.Customizations.Add(new StringGenerator(() => Guid.NewGuid().ToString().Substring(0, 2)));
+
+            Data = f.Create<LargeHotelChain>();
         }
 
         [Benchmark]
@@ -64,12 +65,7 @@ namespace Serialization.Benchmark.Benchmarks
         {
             return JsonSerialize.ServiceStackText.Serialize(Data);
         }
-        [Benchmark]
-        [BenchmarkCategory("Json_Large")]
-        public byte[] SimdJsonSharp()
-        {
-            return JsonSerialize.SimdJsonSharp.Serialize(Data);
-        }
+
 
         [Benchmark]
         [BenchmarkCategory("Json_Large")]

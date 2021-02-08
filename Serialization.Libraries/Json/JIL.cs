@@ -13,7 +13,7 @@ namespace Serialization.Libraries.Json
             {
                 Jil.JSON.SetDefaultOptions(new Jil.Options(includeInherited:true)
                 { 
-
+                    
                 });
             }
             public static string Serialize<T>(T data, Jil.Options options = null)
