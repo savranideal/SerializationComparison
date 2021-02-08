@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Serialization.Benchmark.Benchmarks
 {
     //[ShortRunJob]
-    //[MediumRunJob]
+    [MediumRunJob]
     //[KeepBenchmarkFiles] 
     //[AsciiDocExporter]
     //[CsvExporter]
@@ -24,8 +24,8 @@ namespace Serialization.Benchmark.Benchmarks
     [PlainExporter]
     //[RPlotExporter]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)] 
-    //[MemoryDiagnoser]
-    [SimpleJob, MaxWarmupCount(8),MinIterationCount(3), MaxIterationCount(10)]
+    [MemoryDiagnoser]
+    //[SimpleJob, MaxWarmupCount(8),MinIterationCount(3), MaxIterationCount(10)]
     public abstract class BenchmarkBase
     {
 

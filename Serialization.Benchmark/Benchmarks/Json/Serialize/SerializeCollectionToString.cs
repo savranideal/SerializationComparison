@@ -27,51 +27,45 @@ namespace Serialization.Benchmark.Benchmarks
             Data = new TCollection().Create(DataCount);
         }
 
-        [Benchmark]
-        [BenchmarkCategory("Json_Dictionary")]
+        [Benchmark] 
         public string Newtonsoft()
         {
             return JsonSerialize.Newtonsoft.Serialize(Data);
 
         }
-        [Benchmark]
-        [BenchmarkCategory("Json_Dictionary")]
+        [Benchmark] 
         public byte[] UTF8Json()
         {
             return JsonSerialize.Utf8Json.Serialize(Data);
 
         }
-        [Benchmark]
-        [BenchmarkCategory("Json_Dictionary")]
+
+        //[Benchmark]
         public string FastJson()
         {
             return JsonSerialize.FastJson.Serialize(Data);
 
         }
-        [Benchmark]
-        [BenchmarkCategory("Json_Dictionary")]
+        [Benchmark] 
         public string ServiceStackText()
         {
             return JsonSerialize.ServiceStackText.Serialize(Data);
         }
        
 
-        [Benchmark]
-        [BenchmarkCategory("Json_Dictionary")]
+        [Benchmark] 
         public string Swifter()
         {
             return JsonSerialize.Swifter.Serialize(Data);
         }
 
-        [Benchmark]
-        [BenchmarkCategory("Json_Dictionary")]
+        [Benchmark] 
         public string SystemTextJson()
         {
             return JsonSerialize.SystemTextJson.Serialize(Data);
         }
 
-        [Benchmark]
-        [BenchmarkCategory("Json_Dictionary")]
+        [Benchmark] 
         public string Jil()
         {
             return JsonSerialize.JIL.Serialize(Data);

@@ -69,8 +69,7 @@ namespace Serialization.Benchmark.Benchmarks
         }
         [Benchmark]
         public void Jil()
-        {
-
+        { 
             JsonSerialize.JIL.Serialize(Data, new MemoryStream(short.MaxValue));
         }
 

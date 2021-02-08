@@ -44,7 +44,7 @@ namespace Serialization.Benchmark.Benchmarks
 
         }
         
-        [Benchmark]
+        //[Benchmark]
         public string FastJson()
         {
             return JsonSerialize.FastJson.Serialize(Data);
