@@ -49,14 +49,7 @@ namespace Serialization.Libraries.Binary
                         contractless ? _contractlessCompressed : _standardCompressed :
                         contractless ? _contractless : _standard;
             }
-
-            /// <summary>
-            /// Nesneyi MessagePack olarak serialize eder.
-            /// </summary>
-            /// <typeparam name="T"></typeparam>
-            /// <param name="objectToSerialize"></param>
-            /// <param name="compress">Sıkıştırılsın mı?</param>
-            /// <returns></returns>
+             
             public static byte[] Serialize<T>(T objectToSerialize, bool compress = true, bool contractless = true)
             {
                 return MessagePackSerializer.Serialize(objectToSerialize, GetSerializerOptions(compress, contractless));
@@ -76,13 +69,7 @@ namespace Serialization.Libraries.Binary
             {
                 MessagePackSerializer.Serialize(type, output, objectToSerialize, GetSerializerOptions(compress, contractless));
             }
-
-            /// <summary>
-            /// MessagePack datasını objeye dönüştürür.
-            /// </summary>
-            /// <typeparam name="T"></typeparam>
-            /// <param name="data"></param>
-            /// <returns></returns>
+             
             public static T Deserialize<T>(byte[] data, bool suppressErrors = true, bool compress = true, bool contractless = true)
             {
                 try
