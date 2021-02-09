@@ -74,7 +74,7 @@ namespace Serialization.Benchmark.Models.Hotel
             Title = title;
         }
 
-        public LargeHotelChain() // Parameterless ctor is needed for every protocol buffer class during deserialization
+        public LargeHotelChain() 
         { }
 
 

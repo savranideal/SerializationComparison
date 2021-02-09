@@ -34,8 +34,8 @@ namespace Serialization.Benchmark.Benchmarks
     public abstract class BenchmarkCollectionBase : BenchmarkBase
     {
 
-        //[Params(1, 10, 100, 1000, 10_000)] 
-        [Params(1000)]
+        [Params(1, 10, 100, 1000, 10_000)] 
+        //[Params(1000)]
         public int DataCount { get; set; }
 
 
